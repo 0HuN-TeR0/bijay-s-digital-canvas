@@ -1,0 +1,129 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { ExternalLink, Github } from 'lucide-react';
+
+const projects = [
+  {
+    title: 'AI Task Manager',
+    description: 'A smart task management app with AI-powered prioritization and natural language processing for task creation.',
+    tags: ['React', 'Node.js', 'OpenAI', 'PostgreSQL'],
+    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
+    github: 'https://github.com',
+    live: 'https://example.com',
+  },
+  {
+    title: 'E-Commerce Platform',
+    description: 'Full-featured e-commerce solution with payment integration, inventory management, and real-time analytics.',
+    tags: ['Next.js', 'Stripe', 'MongoDB', 'Tailwind'],
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+    github: 'https://github.com',
+    live: 'https://example.com',
+  },
+  {
+    title: 'Real-Time Chat App',
+    description: 'Scalable chat application with WebSocket support, file sharing, and end-to-end encryption.',
+    tags: ['React', 'Socket.io', 'Redis', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=600&h=400&fit=crop',
+    github: 'https://github.com',
+    live: 'https://example.com',
+  },
+  {
+    title: 'DevOps Dashboard',
+    description: 'Comprehensive monitoring dashboard for CI/CD pipelines, server health, and deployment tracking.',
+    tags: ['Vue.js', 'Docker', 'Kubernetes', 'Grafana'],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+    github: 'https://github.com',
+    live: 'https://example.com',
+  },
+];
+
+const ProjectsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section id="projects" className="py-24 bg-card/30">
+      <div className="container mx-auto px-6" ref={ref}>
+        {/* Section Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="section-title text-center mb-16"
+        >
+          <span className="section-title-bracket">&#123;</span> Projects <span className="section-title-bracket">&#125;</span>
+        </motion.h2>
+
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group bg-card rounded-xl overflow-hidden card-hover border border-border"
+            >
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
+                
+                {/* Tags overlay */}
+                <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                  {project.tags.slice(0, 2).map((tag) => (
+                    <span key={tag} className="tech-badge text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold font-mono mb-3 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  {project.description}
+                </p>
+
+                {/* Links */}
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
+                    <Github size={16} />
+                    Code
+                  </a>
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={`View live demo of ${project.title}`}
+                  >
+                    <ExternalLink size={16} />
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
