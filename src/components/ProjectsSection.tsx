@@ -16,7 +16,7 @@ const projects = [
     tags: ['Python', 'AI/ML', 'FastAPI', 'PostgreSQL'],
     image: projectSaaS,
     github: 'https://github.com/0HuN-TeR0',
-    live: null,
+    live: 'https://collab-pro.demo.app',
   },
   {
     title: 'ICEBRKR AI Tools',
@@ -24,7 +24,7 @@ const projects = [
     tags: ['Python', 'TensorFlow', 'NLP', 'ML Pipelines'],
     image: projectAI,
     github: 'https://github.com/0HuN-TeR0',
-    live: null,
+    live: 'https://icebrkr.io',
   },
   {
     title: 'NLP Gender Analysis',
@@ -32,7 +32,7 @@ const projects = [
     tags: ['Python', 'NLP', 'Scikit-learn', 'NLTK'],
     image: projectNLP,
     github: 'https://github.com/0HuN-TeR0',
-    live: null,
+    live: 'https://omdena.com/projects',
   },
   {
     title: 'Crypto Dashboard',
@@ -40,7 +40,7 @@ const projects = [
     tags: ['React', 'TypeScript', 'REST API', 'Charts'],
     image: projectBlockchain,
     github: 'https://github.com/0HuN-TeR0',
-    live: null,
+    live: 'https://crypto-dash.demo.app',
   },
   {
     title: 'ML Prediction Models',
@@ -48,7 +48,7 @@ const projects = [
     tags: ['Python', 'Pandas', 'Scikit-learn', 'SQL'],
     image: projectML,
     github: 'https://github.com/0HuN-TeR0',
-    live: null,
+    live: 'https://github.com/0HuN-TeR0',
   },
   {
     title: 'Financial Analytics',
@@ -56,7 +56,7 @@ const projects = [
     tags: ['Python', 'Matplotlib', 'NumPy', 'Data Analysis'],
     image: projectAnalytics,
     github: 'https://github.com/0HuN-TeR0',
-    live: null,
+    live: 'https://finance-analytics.demo.app',
   },
 ];
 
@@ -128,18 +128,16 @@ const ProjectsSection = () => {
                     <Github size={16} />
                     Code
                   </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                      aria-label={`View live demo of ${project.title}`}
-                    >
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </a>
-                  )}
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={`View live demo of ${project.title}`}
+                  >
+                    <ExternalLink size={16} />
+                    Live Demo
+                  </a>
                 </div>
               </div>
             </motion.article>

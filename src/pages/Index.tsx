@@ -49,7 +49,7 @@ const Index = () => {
             ],
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Damauli",
+              "addressLocality": "Kathmandu",
               "addressCountry": "Nepal"
             },
             "alumniOf": {
