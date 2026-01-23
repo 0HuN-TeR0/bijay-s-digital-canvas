@@ -2,39 +2,61 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
+import projectAI from '@/assets/project-ai-visualization.jpg';
+import projectSaaS from '@/assets/project-saas-dashboard.jpg';
+import projectBlockchain from '@/assets/project-blockchain.jpg';
+import projectNLP from '@/assets/project-nlp.jpg';
+import projectML from '@/assets/project-ml-prediction.jpg';
+import projectAnalytics from '@/assets/project-analytics.jpg';
 
 const projects = [
   {
-    title: 'AI Task Manager',
-    description: 'A smart task management app with AI-powered prioritization and natural language processing for task creation.',
-    tags: ['React', 'Node.js', 'OpenAI', 'PostgreSQL'],
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'Collab-Pro',
+    description: 'AI-powered influencer marketing platform for niche marketing. Built with advanced recommendation algorithms to match brands with the right influencers.',
+    tags: ['Python', 'AI/ML', 'FastAPI', 'PostgreSQL'],
+    image: projectSaaS,
+    github: 'https://github.com/0HuN-TeR0',
+    live: null,
   },
   {
-    title: 'E-Commerce Platform',
-    description: 'Full-featured e-commerce solution with payment integration, inventory management, and real-time analytics.',
-    tags: ['Next.js', 'Stripe', 'MongoDB', 'Tailwind'],
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'ICEBRKR AI Tools',
+    description: 'Real-time AI tools for virtual communications including recommendation models and user behavior classifiers for adaptive experiences.',
+    tags: ['Python', 'TensorFlow', 'NLP', 'ML Pipelines'],
+    image: projectAI,
+    github: 'https://github.com/0HuN-TeR0',
+    live: null,
   },
   {
-    title: 'Real-Time Chat App',
-    description: 'Scalable chat application with WebSocket support, file sharing, and end-to-end encryption.',
-    tags: ['React', 'Socket.io', 'Redis', 'AWS'],
-    image: 'https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=600&h=400&fit=crop',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'NLP Gender Analysis',
+    description: 'NLP tools to analyze gender and social representations in text. Built sentiment classification and labeling pipelines for Omdena.',
+    tags: ['Python', 'NLP', 'Scikit-learn', 'NLTK'],
+    image: projectNLP,
+    github: 'https://github.com/0HuN-TeR0',
+    live: null,
   },
   {
-    title: 'DevOps Dashboard',
-    description: 'Comprehensive monitoring dashboard for CI/CD pipelines, server health, and deployment tracking.',
-    tags: ['Vue.js', 'Docker', 'Kubernetes', 'Grafana'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'Crypto Dashboard',
+    description: 'Comprehensive cryptocurrency analytics dashboard with real-time data visualization and portfolio tracking capabilities.',
+    tags: ['React', 'TypeScript', 'REST API', 'Charts'],
+    image: projectBlockchain,
+    github: 'https://github.com/0HuN-TeR0',
+    live: null,
+  },
+  {
+    title: 'ML Prediction Models',
+    description: 'End-to-end machine learning projects from WorldQuant Applied Data Science Lab including supervised and unsupervised models.',
+    tags: ['Python', 'Pandas', 'Scikit-learn', 'SQL'],
+    image: projectML,
+    github: 'https://github.com/0HuN-TeR0',
+    live: null,
+  },
+  {
+    title: 'Financial Analytics',
+    description: 'Technical and fundamental analysis tools for financial securities with interactive visualizations and predictive insights.',
+    tags: ['Python', 'Matplotlib', 'NumPy', 'Data Analysis'],
+    image: projectAnalytics,
+    github: 'https://github.com/0HuN-TeR0',
+    live: null,
   },
 ];
 
@@ -56,7 +78,7 @@ const ProjectsSection = () => {
         </motion.h2>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.article
               key={project.title}
@@ -106,16 +128,18 @@ const ProjectsSection = () => {
                     <Github size={16} />
                     Code
                   </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    aria-label={`View live demo of ${project.title}`}
-                  >
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={`View live demo of ${project.title}`}
+                    >
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.article>

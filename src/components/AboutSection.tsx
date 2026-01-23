@@ -3,20 +3,35 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import profilePhoto from '@/assets/profile-photo.jpg';
 
-const skills = ['Full Stack Dev', 'AI/ML', 'UI/UX Design', 'Cloud Architecture', 'DevOps', 'Project Management'];
+const skills = [
+  'AI/ML Engineering',
+  'Deep Learning',
+  'NLP',
+  'Data Science',
+  'Business Analytics',
+  'Entrepreneurship',
+];
 
-const techStack = ['TypeScript', 'React', 'Node.js', 'Python', 'AWS', 'PostgreSQL', 'Docker', 'Git'];
+const techStack = {
+  'AI/ML': ['PyTorch', 'TensorFlow', 'Keras', 'Scikit-learn', 'NumPy'],
+  'Data': ['PostgreSQL', 'MongoDB', 'MySQL', 'Pandas', 'Matplotlib'],
+  'LLMs': ['AI Agents', 'RAG', 'Vector DBs', 'LangChain'],
+  'DevOps': ['Git', 'Docker', 'GitLab', 'AWS'],
+};
 
 const education = [
   {
-    institution: 'Tribhuvan University',
-    period: '2019 - 2023',
-    degree: 'B.Sc. in Computer Science',
+    institution: 'CG Institute of Management',
+    affiliation: 'Affiliated with Limkokwing University, Malaysia',
+    period: '2021 - 2024',
+    degree: 'B.IT with Technopreneurship (Hons)',
+    grade: 'CGPA: 3.96/4.0 (First Class Honours)',
   },
   {
-    institution: 'Higher Secondary School',
-    period: '2017 - 2019',
-    degree: 'Science Stream, Computer Science',
+    institution: 'PratiVa Secondary School',
+    period: '2018 - 2021',
+    degree: 'Higher Secondary (Science)',
+    grade: 'CGPA: 3.62',
   },
 ];
 
@@ -59,11 +74,16 @@ const AboutSection = () => {
 
               <div>
                 <h3 className="text-2xl font-bold font-mono mb-4">BIJAY SOTI</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Academic high-achiever with a First Class Honours degree in Information Technology 
+                  (CGPA: 3.96/4.0). Proven track record in AI/ML engineering through international 
+                  internships and open-source collaborations.
+                </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  A passionate full-stack developer with expertise in building scalable web applications 
-                  and AI-powered solutions. I thrive on turning complex problems into elegant, 
-                  user-friendly experiences. With a strong foundation in modern technologies and a 
-                  keen eye for design, I create digital products that make a difference.
+                  I don't just build AI models—I build products. From developing recommendation systems 
+                  at ICEBRKR (Switzerland) to leading AI strategy at Yagya.AI, I bridge the gap between 
+                  cutting-edge technology and real business impact. Passionate about turning complex 
+                  data into actionable insights and scalable solutions.
                 </p>
               </div>
             </div>
@@ -88,8 +108,12 @@ const AboutSection = () => {
                 >
                   <div className="timeline-dot top-1" />
                   <h4 className="font-semibold text-foreground">{edu.institution}</h4>
+                  {edu.affiliation && (
+                    <p className="text-xs text-muted-foreground">{edu.affiliation}</p>
+                  )}
                   <p className="text-sm text-primary font-mono">{edu.period}</p>
                   <p className="text-muted-foreground">{edu.degree}</p>
+                  <p className="text-sm text-primary/80">{edu.grade}</p>
                 </motion.div>
               ))}
             </div>
@@ -103,7 +127,7 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <h3 className="text-xl font-bold font-mono mb-6">SKILLS</h3>
+            <h3 className="text-xl font-bold font-mono mb-6">CORE EXPERTISE</h3>
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, index) => (
                 <motion.span
@@ -125,17 +149,24 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <h3 className="text-xl font-bold font-mono mb-6">TECH STACK</h3>
-            <div className="flex flex-wrap gap-3">
-              {techStack.map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  className="tech-badge"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
-                >
-                  {tech}
-                </motion.span>
+            <div className="space-y-4">
+              {Object.entries(techStack).map(([category, techs], catIndex) => (
+                <div key={category}>
+                  <p className="text-sm text-primary font-mono mb-2">{category}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {techs.map((tech, index) => (
+                      <motion.span
+                        key={tech}
+                        className="tech-badge"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.3, delay: 0.7 + catIndex * 0.1 + index * 0.03 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
