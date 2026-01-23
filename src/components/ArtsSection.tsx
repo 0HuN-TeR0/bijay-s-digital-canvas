@@ -1,37 +1,49 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import artCosmicMind from '@/assets/art-cosmic-mind.jpg';
+import artZenPeace from '@/assets/art-zen-peace.jpg';
+import artDigitalEvolution from '@/assets/art-digital-evolution.jpg';
+import artTreeWisdom from '@/assets/art-tree-wisdom.jpg';
+import artInfinitePath from '@/assets/art-infinite-path.jpg';
+import artPhoenixCode from '@/assets/art-phoenix-code.jpg';
 
 const artworks = [
   {
-    title: 'Digital Landscape',
-    category: 'Digital Art',
-    image: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&h=600&fit=crop',
+    title: 'The Cosmic Mind',
+    category: 'Philosophy',
+    image: artCosmicMind,
+    quote: '"The mind is not a vessel to be filled, but a fire to be kindled." — Plutarch',
   },
   {
-    title: 'Abstract Motion',
-    category: 'Generative Art',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=600&fit=crop',
+    title: 'Stillness Within',
+    category: 'Mindfulness',
+    image: artZenPeace,
+    quote: '"In the midst of movement and chaos, keep stillness inside of you." — Deepak Chopra',
   },
   {
-    title: 'Code Poetry',
-    category: 'Typography',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=600&fit=crop',
+    title: 'Digital Evolution',
+    category: 'Technology',
+    image: artDigitalEvolution,
+    quote: '"We are not just users of technology, we are becoming one with it." — Unknown',
   },
   {
-    title: 'Neon Dreams',
-    category: 'Digital Art',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=600&fit=crop',
+    title: 'Roots of Wisdom',
+    category: 'Growth',
+    image: artTreeWisdom,
+    quote: '"The only true wisdom is knowing you know nothing." — Socrates',
   },
   {
-    title: 'Geometric Patterns',
-    category: 'Generative Art',
-    image: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&h=600&fit=crop',
+    title: 'The Infinite Path',
+    category: 'Journey',
+    image: artInfinitePath,
+    quote: '"A journey of a thousand miles begins with a single step." — Lao Tzu',
   },
   {
-    title: 'Tech Fusion',
-    category: 'Digital Art',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=600&fit=crop',
+    title: 'Phoenix Rising',
+    category: 'Resilience',
+    image: artPhoenixCode,
+    quote: '"From the ashes of failure, the phoenix of success is born." — Unknown',
   },
 ];
 
@@ -48,10 +60,19 @@ const ArtsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="section-title text-center mb-16"
+          className="section-title text-center mb-4"
         >
           <span className="section-title-bracket">~</span> Creative Arts <span className="section-title-bracket">~</span>
         </motion.h2>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
+        >
+          A collection of philosophical reflections and visual meditations that inspire my work and worldview.
+        </motion.p>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -77,12 +98,11 @@ const ArtsSection = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent flex items-end p-4"
+                className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent flex flex-col justify-end p-4"
               >
-                <div>
-                  <p className="text-xs text-primary font-mono uppercase">{art.category}</p>
-                  <h3 className="text-lg font-bold">{art.title}</h3>
-                </div>
+                <p className="text-xs text-primary font-mono uppercase mb-1">{art.category}</p>
+                <h3 className="text-lg font-bold mb-2">{art.title}</h3>
+                <p className="text-xs text-muted-foreground italic line-clamp-2">{art.quote}</p>
               </motion.div>
             </motion.div>
           ))}
