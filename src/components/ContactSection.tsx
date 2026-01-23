@@ -14,9 +14,9 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://linkedin.com/in/bijaysoti', label: 'LinkedIn' },
-  { icon: Github, href: 'https://github.com/bijaysoti', label: 'GitHub' },
-  { icon: Twitter, href: 'https://twitter.com/bijaysoti', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/beezay810/', label: 'LinkedIn' },
+  { icon: Github, href: 'https://github.com/0HuN-TeR0', label: 'GitHub' },
+  { icon: Twitter, href: 'https://x.com/0__bijay__0', label: 'X (Twitter)' },
 ];
 
 const ContactSection = () => {
@@ -89,8 +89,8 @@ const ContactSection = () => {
           >
             <h3 className="text-2xl font-bold font-mono mb-6">Let's Connect</h3>
             <p className="text-muted-foreground mb-8">
-              Have a project in mind or just want to say hello? I'd love to hear from you. 
-              Fill out the form or reach out through any of the channels below.
+              Looking to collaborate on AI/ML projects, discuss business opportunities, 
+              or just want to connect? I'd love to hear from you. Let's build something impactful together.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -100,8 +100,8 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <a href="mailto:contact@bijaysoti.com" className="text-foreground hover:text-primary transition-colors">
-                    contact@bijaysoti.com
+                  <a href="mailto:bijay.soti.professional@gmail.com" className="text-foreground hover:text-primary transition-colors">
+                    bijay.soti.professional@gmail.com
                   </a>
                 </div>
               </div>
@@ -112,7 +112,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="text-foreground">Kathmandu, Nepal</p>
+                  <p className="text-foreground">Damauli, Nepal</p>
                 </div>
               </div>
             </div>

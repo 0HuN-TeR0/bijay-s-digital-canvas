@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { Linkedin, Github, Mail, Twitter } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://linkedin.com/in/bijaysoti', label: 'LinkedIn' },
-  { icon: Github, href: 'https://github.com/bijaysoti', label: 'GitHub' },
-  { icon: Twitter, href: 'https://twitter.com/bijaysoti', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:contact@bijaysoti.com', label: 'Email' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/beezay810/', label: 'LinkedIn' },
+  { icon: Github, href: 'https://github.com/0HuN-TeR0', label: 'GitHub' },
+  { icon: Twitter, href: 'https://x.com/0__bijay__0', label: 'X (Twitter)' },
+  { icon: Mail, href: 'mailto:bijay.soti.professional@gmail.com', label: 'Email' },
 ];
 
 const SocialSidebar = () => {

@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex gap-4">
             <a
-              href="https://linkedin.com/in/bijaysoti"
+              href="https://www.linkedin.com/in/beezay810/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -24,7 +24,7 @@ const Footer = () => {
               <Linkedin size={20} />
             </a>
             <a
-              href="https://github.com/bijaysoti"
+              href="https://github.com/0HuN-TeR0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -33,16 +33,16 @@ const Footer = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://twitter.com/bijaysoti"
+              href="https://x.com/0__bijay__0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Twitter"
+              aria-label="X (Twitter)"
             >
               <Twitter size={20} />
             </a>
             <a
-              href="mailto:contact@bijaysoti.com"
+              href="mailto:bijay.soti.professional@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >

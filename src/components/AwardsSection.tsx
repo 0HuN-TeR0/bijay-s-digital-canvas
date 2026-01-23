@@ -1,36 +1,50 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Trophy, Award, Star, Medal } from 'lucide-react';
+import { Trophy, Award, Star, Medal, Lightbulb, Cpu } from 'lucide-react';
 
 const awards = [
   {
     icon: Trophy,
-    title: 'Best Web Application',
-    event: 'TechFest 2023',
-    date: '2023',
-    description: 'First place in the national web development competition for building an innovative healthcare platform.',
+    title: 'First Position - College Honor',
+    event: 'CG Institute of Management',
+    date: '2024',
+    description: 'Awarded for securing 1st position in my batch with outstanding academic performance (CGPA: 3.96/4.0).',
   },
   {
     icon: Award,
-    title: 'Innovation Award',
-    event: 'Startup Weekend',
-    date: '2022',
-    description: 'Recognized for developing an AI-powered solution for sustainable agriculture.',
+    title: 'Babal Challenge – Runner-Up',
+    event: "King's College",
+    date: '2023',
+    description: 'Second place for Collab-Pro—an AI-powered influencer marketing platform for niche marketing.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Business Development Bootcamp',
+    event: 'CGIM',
+    date: '2023',
+    description: '5-day intensive program focused on building a business from scratch with hands-on entrepreneurship training.',
   },
   {
     icon: Star,
-    title: 'Top Contributor',
-    event: 'Open Source Nepal',
-    date: '2022',
-    description: 'Acknowledged as one of the top open source contributors in the community.',
+    title: 'SecurityPal Secret Hackathon',
+    event: 'SecurityPal',
+    date: '2023',
+    description: 'Team-based hackathon focused on collaboration, leadership, and brainstorming under pressure.',
   },
   {
     icon: Medal,
-    title: 'Academic Excellence',
-    event: 'University Awards',
-    date: '2021',
-    description: 'Dean\'s list recognition for outstanding academic performance in Computer Science.',
+    title: 'Technical & Fundamental Analysis',
+    event: 'Ideapreneur Nepal & Sikable',
+    date: '2022',
+    description: 'Achieved intermediate-level proficiency in technical and fundamental analysis of financial securities.',
+  },
+  {
+    icon: Cpu,
+    title: 'Hardware Fellowship',
+    event: 'LOCUS, IOE Pulchowk',
+    date: '2022',
+    description: 'Hands-on experience with IoT, Arduino, sensors, motors, and electronic system design with collaborative innovation.',
   },
 ];
 
@@ -52,7 +66,7 @@ const AwardsSection = () => {
         </motion.h2>
 
         {/* Awards Grid */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {awards.map((award, index) => (
             <motion.div
               key={award.title}
@@ -66,8 +80,8 @@ const AwardsSection = () => {
                   <award.icon size={24} className="text-primary" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold font-mono">{award.title}</h3>
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <h3 className="font-bold font-mono text-sm">{award.title}</h3>
                     <span className="text-xs text-primary font-mono">{award.date}</span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-2">{award.event}</p>
