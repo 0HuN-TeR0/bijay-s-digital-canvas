@@ -8,8 +8,17 @@ import projectBlockchain from '@/assets/project-blockchain.jpg';
 import projectNLP from '@/assets/project-nlp.jpg';
 import projectML from '@/assets/project-ml-prediction.jpg';
 import projectAnalytics from '@/assets/project-analytics.jpg';
+import projectOptmax from '@/assets/project-optmax.jpg';
 
 const projects = [
+  {
+    title: 'OptMax',
+    description: 'GPU Recommendation System using KNN algorithm. Helps users find the optimal graphics card based on price, performance, VRAM, and release year preferences.',
+    tags: ['Python', 'KNN', 'Scikit-learn', 'Data Analysis'],
+    image: projectOptmax,
+    github: 'https://github.com/0HuN-TeR0/Optmax',
+    live: 'https://github.com/0HuN-TeR0/Optmax',
+  },
   {
     title: 'Collab-Pro',
     description: 'AI-powered influencer marketing platform for niche marketing. Built with advanced recommendation algorithms to match brands with the right influencers.',

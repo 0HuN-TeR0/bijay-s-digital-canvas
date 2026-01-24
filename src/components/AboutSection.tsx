@@ -96,8 +96,8 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h3 className="text-xl font-bold font-mono mb-6">EDUCATION</h3>
-            <div className="relative pl-6">
-              <div className="timeline-line" />
+        <div className="relative pl-8">
+              <div className="absolute left-[3px] top-2 bottom-2 w-0.5 bg-border" />
               {education.map((edu, index) => (
                 <motion.div
                   key={index}
@@ -106,7 +106,7 @@ const AboutSection = () => {
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                   className="relative pb-8 last:pb-0"
                 >
-                  <div className="timeline-dot top-1" />
+                  <div className="absolute left-[-25px] top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background z-10" />
                   <h4 className="font-semibold text-foreground">{edu.institution}</h4>
                   {edu.affiliation && (
                     <p className="text-xs text-muted-foreground">{edu.affiliation}</p>
