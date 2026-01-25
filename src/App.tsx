@@ -6,6 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import CryptoDashboard from "./pages/demos/CryptoDashboard";
+import OptMaxDemo from "./pages/demos/OptMaxDemo";
+import CollabProDemo from "./pages/demos/CollabProDemo";
+import NLPAnalysisDemo from "./pages/demos/NLPAnalysisDemo";
+import FinancialAnalyticsDemo from "./pages/demos/FinancialAnalyticsDemo";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +23,11 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/demo/crypto" element={<CryptoDashboard />} />
+            <Route path="/demo/optmax" element={<OptMaxDemo />} />
+            <Route path="/demo/collab-pro" element={<CollabProDemo />} />
+            <Route path="/demo/nlp-analysis" element={<NLPAnalysisDemo />} />
+            <Route path="/demo/financial-analytics" element={<FinancialAnalyticsDemo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
