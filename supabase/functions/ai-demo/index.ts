@@ -1,9 +1,48 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// Input validation schemas
+const OptMaxSchema = z.object({
+  budget: z.number().min(0).max(100),
+  performance: z.number().min(0).max(100),
+  vram: z.number().min(0).max(100),
+  recency: z.number().min(0).max(100),
+});
+
+const CollabProSchema = z.object({
+  brandName: z.string().min(1).max(100),
+  niche: z.string().min(1).max(50),
+  targetAudience: z.string().max(200),
+  budget: z.string().max(50),
+  goals: z.string().max(500),
+});
+
+const NLPSchema = z.object({
+  text: z.string().min(10).max(5000),
+});
+
+const FinancialSchema = z.object({
+  ticker: z.string().min(1).max(10).regex(/^[A-Za-z]+$/, "Ticker must be letters only"),
+});
+
+const RequestSchema = z.object({
+  type: z.enum(["optmax", "collab-pro", "nlp-analysis", "financial-analytics"]),
+  data: z.unknown(),
+});
+
+// Sanitize string inputs to prevent prompt injection
+function sanitizeInput(input: string): string {
+  return input
+    .replace(/[<>{}[\]\\]/g, '') // Remove special characters
+    .replace(/\n{3,}/g, '\n\n') // Limit consecutive newlines
+    .trim()
+    .slice(0, 1000); // Hard limit
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -11,7 +50,18 @@ serve(async (req) => {
   }
 
   try {
-    const { type, data } = await req.json();
+    const body = await req.json();
+    
+    // Validate request structure
+    const requestResult = RequestSchema.safeParse(body);
+    if (!requestResult.success) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid request format', details: requestResult.error.message }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const { type, data } = requestResult.data;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -22,7 +72,15 @@ serve(async (req) => {
     let userPrompt = "";
 
     switch (type) {
-      case "optmax":
+      case "optmax": {
+        const result = OptMaxSchema.safeParse(data);
+        if (!result.success) {
+          return new Response(
+            JSON.stringify({ error: 'Invalid OptMax input', details: result.error.message }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        const validatedData = result.data;
         systemPrompt = `You are OptMax, an intelligent GPU recommendation system. You analyze user preferences and recommend the best GPUs based on weighted criteria.
 
 Given user preferences for:
@@ -50,10 +108,19 @@ You must:
   ],
   "analysis": "Overall analysis of your preferences and recommendations"
 }`;
-        userPrompt = `User preferences: Budget: ${data.budget}%, Performance: ${data.performance}%, VRAM: ${data.vram}%, Recency: ${data.recency}%. Recommend 5 GPUs.`;
+        userPrompt = `User preferences: Budget: ${validatedData.budget}%, Performance: ${validatedData.performance}%, VRAM: ${validatedData.vram}%, Recency: ${validatedData.recency}%. Recommend 5 GPUs.`;
         break;
+      }
 
-      case "collab-pro":
+      case "collab-pro": {
+        const result = CollabProSchema.safeParse(data);
+        if (!result.success) {
+          return new Response(
+            JSON.stringify({ error: 'Invalid Collab-Pro input', details: result.error.message }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        const validatedData = result.data;
         systemPrompt = `You are Collab-Pro, an AI-powered influencer marketing platform. You match brands with influencers using recommendation algorithms.
 
 Given a brand's requirements:
@@ -81,10 +148,19 @@ You must:
   ],
   "strategy": "Recommended campaign strategy"
 }`;
-        userPrompt = `Brand: ${data.brandName}, Niche: ${data.niche}, Target: ${data.targetAudience}, Budget: ${data.budget}, Goals: ${data.goals}. Find matching influencers.`;
+        userPrompt = `Brand: ${sanitizeInput(validatedData.brandName)}, Niche: ${sanitizeInput(validatedData.niche)}, Target: ${sanitizeInput(validatedData.targetAudience)}, Budget: ${sanitizeInput(validatedData.budget)}, Goals: ${sanitizeInput(validatedData.goals)}. Find matching influencers.`;
         break;
+      }
 
-      case "nlp-analysis":
+      case "nlp-analysis": {
+        const result = NLPSchema.safeParse(data);
+        if (!result.success) {
+          return new Response(
+            JSON.stringify({ error: 'Invalid NLP input', details: result.error.message }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        const validatedData = result.data;
         systemPrompt = `You are an NLP Gender & Sentiment Analysis tool. You analyze text for:
 1. Gender representation and bias
 2. Sentiment (positive/negative/neutral)
@@ -112,10 +188,19 @@ Format response as JSON:
   },
   "recommendations": ["How to improve representation..."]
 }`;
-        userPrompt = `Analyze this text for gender representation and sentiment: "${data.text}"`;
+        userPrompt = `Analyze this text for gender representation and sentiment: "${sanitizeInput(validatedData.text)}"`;
         break;
+      }
 
-      case "financial-analytics":
+      case "financial-analytics": {
+        const result = FinancialSchema.safeParse(data);
+        if (!result.success) {
+          return new Response(
+            JSON.stringify({ error: 'Invalid ticker format', details: result.error.message }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        const validatedData = result.data;
         systemPrompt = `You are a Financial Analytics AI providing technical and fundamental analysis.
 
 Given a stock ticker, provide:
@@ -155,11 +240,15 @@ Format as JSON:
   "riskLevel": "low/medium/high",
   "recommendation": "Buy/Sell/Hold with reasoning"
 }`;
-        userPrompt = `Provide comprehensive financial analysis for ticker: ${data.ticker}`;
+        userPrompt = `Provide comprehensive financial analysis for ticker: ${validatedData.ticker.toUpperCase()}`;
         break;
+      }
 
       default:
-        throw new Error("Unknown analysis type");
+        return new Response(
+          JSON.stringify({ error: "Unknown analysis type" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
     }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
