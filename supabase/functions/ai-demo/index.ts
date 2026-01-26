@@ -47,9 +47,13 @@ function sanitizeInput(input: string): string {
 }
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
-  }
+if (req.method === "OPTIONS") {
+  return new Response("ok", {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 
   try {
     const body = await req.json();
