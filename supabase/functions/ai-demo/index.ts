@@ -6,7 +6,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
-
 // Input validation schemas
 const OptMaxSchema = z.object({
   budget: z.number().min(0).max(100),
