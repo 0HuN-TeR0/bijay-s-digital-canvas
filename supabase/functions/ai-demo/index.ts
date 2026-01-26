@@ -3,10 +3,11 @@ import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   "access-control-allow-origin": "*",
-  "access-control-allow-headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform",
   "access-control-allow-methods": "POST, OPTIONS",
+  "access-control-allow-headers":
+    "authorization, apikey, content-type, x-client-info, x-supabase-client-platform, x-supabase-client-version",
 };
+
 
 // Input validation schemas
 const OptMaxSchema = z.object({
