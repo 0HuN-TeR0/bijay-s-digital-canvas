@@ -21,7 +21,7 @@ const experiences = [
     company: 'ICEBRKR (Virtly Company)',
     location: 'Switzerland (Remote from Nepal)',
     period: 'Mar 2024 - Aug 2024',
-    type: 'Internship',
+    type: 'Full-time',
     responsibilities: [
       'Developed real-time AI tools for virtual communications',
       'Built recommendation models and user behavior classifiers',
