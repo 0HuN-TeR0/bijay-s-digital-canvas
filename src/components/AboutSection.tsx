@@ -61,7 +61,7 @@ const AboutSection = () => {
           >
             <div className="flex flex-col md:flex-row gap-8 items-start">
               <div className="relative">
-                <div className="w-48 h-72 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="w-48 h-72 rounded-lg overflow-hidden transition-all duration-500 hover:scale-105">
                   <img
                     src={profilePhoto}
                     alt="Bijay Soti"
