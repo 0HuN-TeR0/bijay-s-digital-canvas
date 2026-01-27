@@ -4,7 +4,7 @@
 ![React](https://img.shields.io/badge/React-18+-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue.svg)
 
-> **🎯 Live Demo:** [bijaysoti.lovable.app/demos/crypto-dashboard](https://bijaysoti.lovable.app/demos/crypto-dashboard)
+> **🎯 Live Demo:** [bijaysoti.com.np/demo/crypto](https://bijaysoti.com.np/demo/crypto)
 
 ## 🧠 Overview
 

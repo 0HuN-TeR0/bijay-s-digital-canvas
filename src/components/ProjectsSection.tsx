@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ExternalLink, Github } from 'lucide-react';
 import projectAI from '@/assets/project-ai-visualization.jpg';
 import projectSaaS from '@/assets/project-saas-dashboard.jpg';
@@ -129,16 +130,27 @@ const ProjectsSection = () => {
                     <Github size={16} />
                     Code
                   </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    aria-label={`View live demo of ${project.title}`}
-                  >
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </a>
+                  {project.live.startsWith('/') ? (
+                    <Link
+                      to={project.live}
+                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={`View live demo of ${project.title}`}
+                    >
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </Link>
+                  ) : (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={`View live demo of ${project.title}`}
+                    >
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.article>
