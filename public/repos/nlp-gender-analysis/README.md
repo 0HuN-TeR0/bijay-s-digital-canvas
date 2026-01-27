@@ -1,10 +1,10 @@
 # NLP Gender & Sentiment Analyzer
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.9+-green.svg)
-![NLP](https://img.shields.io/badge/NLP-spaCy-blue.svg)
+![Python](https://img.shields.io/badge/python-3.11+-green.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)
 
-> **🎯 Live Demo:** [bijaysoti.lovable.app/demos/nlp-analysis](https://bijaysoti.lovable.app/demos/nlp-analysis)
+> **🎯 Live Demo:** [bijaysoti.com.np/demo/nlp-analysis](https://bijaysoti.com.np/demo/nlp-analysis)
 
 ## 🧠 Problem Statement
 

@@ -1,10 +1,10 @@
 # Financial Analytics - AI Stock Analysis
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.9+-green.svg)
-![AI](https://img.shields.io/badge/AI-Gemini-orange.svg)
+![Python](https://img.shields.io/badge/python-3.11+-green.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)
 
-> **🎯 Live Demo:** [bijaysoti.lovable.app/demos/financial-analytics](https://bijaysoti.lovable.app/demos/financial-analytics)
+> **🎯 Live Demo:** [bijaysoti.com.np/demo/financial-analytics](https://bijaysoti.com.np/demo/financial-analytics)
 
 ## ⚠️ Disclaimer
 
