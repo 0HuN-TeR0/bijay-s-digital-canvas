@@ -47,12 +47,13 @@ function sanitizeInput(input: string): string {
 }
 
 serve(async (req) => {
-if (req.method === "OPTIONS") {
-  return new Response("ok", {
-    status: 204,
-    headers: corsHeaders,
-  });
-}
+  // CORS preflight: 204 responses MUST NOT include a body (Deno throws otherwise)
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: corsHeaders,
+    });
+  }
 
 
   try {
